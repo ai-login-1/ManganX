@@ -22,8 +22,8 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--surface-0))",
+        foreground: "hsl(var(--text-primary))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -52,43 +52,15 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
-        // MANGAN-X custom semantic colors
-        amber: {
-          DEFAULT: "hsl(var(--amber))",
-          dim: "hsl(var(--amber-dim))",
-        },
-        "mine-green": {
-          DEFAULT: "hsl(var(--green))",
-          dim: "hsl(var(--green-dim))",
-        },
-        "mine-red": {
-          DEFAULT: "hsl(var(--red))",
-          dim: "hsl(var(--red-dim))",
-        },
-        surface: {
-          1: "hsl(var(--surface-1))",
-          2: "hsl(var(--surface-2))",
-          3: "hsl(var(--surface-3))",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        sm: "2px",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
       },
       keyframes: {
         "accordion-down": {
@@ -101,7 +73,7 @@ export default {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-down": "accordion-up 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },

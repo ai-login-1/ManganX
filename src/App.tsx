@@ -13,6 +13,7 @@ import Risks from "@/pages/Risks";
 import Simulator from "@/pages/Simulator";
 import Satellite from "@/pages/Satellite";
 import Copilot from "@/pages/Copilot";
+import DataCenter from "@/pages/DataCenter";
 import Reports from "@/pages/Reports";
 import Settings from "@/pages/Settings";
 import NotFound from "@/pages/NotFound";
@@ -28,17 +29,18 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route element={<AppLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/reserves" element={<Reserves />} />
+            <Route path="/dashboard"  element={<Dashboard />} />
+            <Route path="/reserves"   element={<Reserves />} />
             <Route path="/production" element={<Production />} />
             <Route path="/operations" element={<Operations />} />
-            <Route path="/equipment" element={<Equipment />} />
-            <Route path="/risks" element={<Risks />} />
-            <Route path="/simulator" element={<Simulator />} />
-            <Route path="/satellite" element={<Satellite />} />
-            <Route path="/copilot" element={<Copilot />} />
-            <Route path="/reports" element={<Reports />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/equipment"  element={<Equipment />} />
+            <Route path="/risks"      element={<Risks />} />
+            <Route path="/simulator"  element={<Simulator />} />
+            <Route path="/satellite"  element={<Satellite />} />
+            <Route path="/copilot"    element={<Copilot />} />
+            <Route path="/datacenter" element={<DataCenter />} />
+            <Route path="/reports"    element={<Reports />} />
+            <Route path="/settings"   element={<Settings />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

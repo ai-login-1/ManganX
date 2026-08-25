@@ -6,166 +6,332 @@
 
 @layer base {
   :root {
-    /* MANGAN-X Dark Industrial Theme */
-    --background: 220 18% 7%;
-    --foreground: 210 20% 92%;
+    /* MANGAN-X — Geological/GIS Platform Theme */
+    /* Base: very dark neutral charcoal — not blue-shifted, not navy */
+    --background: 210 8% 6%;
+    --foreground: 210 10% 88%;
 
-    --card: 220 16% 10%;
-    --card-foreground: 210 20% 92%;
+    --card: 210 8% 9%;
+    --card-foreground: 210 10% 88%;
 
-    --popover: 220 16% 10%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 210 8% 9%;
+    --popover-foreground: 210 10% 88%;
 
-    /* Amber/manganese ore accent */
-    --primary: 38 92% 50%;
-    --primary-foreground: 220 18% 7%;
+    /* Manganese ore amber — restrained, not neon */
+    --primary: 36 88% 48%;
+    --primary-foreground: 210 8% 6%;
 
-    --secondary: 220 14% 15%;
-    --secondary-foreground: 210 20% 82%;
+    --secondary: 210 6% 14%;
+    --secondary-foreground: 210 10% 78%;
 
-    --muted: 220 14% 14%;
-    --muted-foreground: 215 14% 52%;
+    --muted: 210 6% 13%;
+    --muted-foreground: 210 8% 46%;
 
-    --accent: 220 14% 18%;
-    --accent-foreground: 210 20% 92%;
+    --accent: 210 6% 16%;
+    --accent-foreground: 210 10% 88%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 68% 48%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 12% 16%;
-    --input: 220 12% 16%;
-    --ring: 38 92% 50%;
+    --border: 210 6% 14%;
+    --input: 210 6% 14%;
+    --ring: 36 88% 48%;
 
-    --radius: 0.375rem;
+    --radius: 0.25rem;
 
-    /* Custom tokens */
-    --amber: 38 92% 50%;
-    --amber-dim: 38 70% 35%;
-    --green: 142 50% 42%;
-    --green-dim: 142 40% 28%;
-    --red: 0 72% 51%;
-    --red-dim: 0 60% 30%;
-    --yellow: 45 96% 56%;
-    --surface-1: 220 16% 10%;
-    --surface-2: 220 14% 13%;
-    --surface-3: 220 13% 17%;
-    --text-primary: 210 20% 92%;
-    --text-secondary: 215 14% 68%;
-    --text-tertiary: 215 10% 48%;
+    /* Semantic tokens */
+    --amber: 36 88% 48%;
+    --amber-muted: 36 60% 32%;
+    --green: 150 45% 38%;
+    --green-muted: 150 35% 24%;
+    --red: 0 68% 48%;
+    --red-muted: 0 52% 26%;
+    --blue: 210 72% 52%;
+    --blue-muted: 210 52% 28%;
 
-    --sidebar-background: 220 20% 6%;
-    --sidebar-foreground: 210 20% 80%;
-    --sidebar-primary: 38 92% 50%;
-    --sidebar-primary-foreground: 220 18% 7%;
-    --sidebar-accent: 220 14% 12%;
-    --sidebar-accent-foreground: 210 20% 92%;
-    --sidebar-border: 220 12% 13%;
-    --sidebar-ring: 38 92% 50%;
+    /* Surfaces — very subtle steps */
+    --surface-0: 210 8% 6%;    /* page background */
+    --surface-1: 210 8% 9%;    /* card */
+    --surface-2: 210 7% 12%;   /* elevated card */
+    --surface-3: 210 6% 16%;   /* input / control bg */
+    --surface-4: 210 6% 20%;   /* hover state */
+
+    /* Typography */
+    --text-primary: 210 10% 88%;
+    --text-secondary: 210 8% 64%;
+    --text-tertiary: 210 6% 42%;
+    --text-dim: 210 5% 30%;
+
+    /* Sidebar */
+    --sidebar-background: 210 9% 5%;
+    --sidebar-border: 210 6% 11%;
+
+    /* Map / GIS */
+    --map-bg: 210 10% 8%;
+    --grid-line: 210 6% 12%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[hsl(var(--surface-0))] text-[hsl(var(--text-primary))];
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
-  ::-webkit-scrollbar-track {
-    background: hsl(220 16% 10%);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(220 12% 22%);
-    border-radius: 2px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(38 92% 50% / 0.5);
-  }
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: hsl(210 8% 9%); }
+  ::-webkit-scrollbar-thumb { background: hsl(210 6% 20%); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(36 88% 48% / 0.4); }
 
-  .font-mono {
-    font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  }
+  .font-mono { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; }
 }
 
 @layer components {
+
+  /* ── Core surfaces ─────────────────────────────────────── */
+
   .mangan-card {
-    @apply bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-[var(--radius)];
+    @apply bg-[hsl(var(--surface-1))] border border-[hsl(var(--border))] rounded-[var(--radius)];
+  }
+
+  .mangan-panel {
+    @apply bg-[hsl(var(--surface-2))] border border-[hsl(var(--border))] rounded-[var(--radius)];
   }
 
   .mangan-surface {
     @apply bg-[hsl(var(--surface-2))] border border-[hsl(var(--border))];
   }
 
-  .status-operational {
-    @apply text-[hsl(var(--green))];
-  }
-  .status-fault {
-    @apply text-[hsl(var(--red))];
-  }
-  .status-warning {
-    @apply text-[hsl(var(--yellow))];
-  }
-  .status-idle {
-    @apply text-[hsl(var(--text-tertiary))];
-  }
-
-  .severity-critical {
-    @apply border-l-2 border-[hsl(var(--red))];
-  }
-  .severity-high {
-    @apply border-l-2 border-[hsl(var(--amber))];
-  }
-  .severity-medium {
-    @apply border-l-2 border-[hsl(var(--yellow))];
-  }
-  .severity-low {
-    @apply border-l-2 border-[hsl(var(--text-tertiary))];
-  }
-
-  .kpi-value {
-    @apply text-2xl font-semibold text-[hsl(var(--text-primary))] tabular-nums;
-  }
+  /* ── Typography ────────────────────────────────────────── */
 
   .section-label {
-    @apply text-[10px] font-semibold uppercase tracking-widest text-[hsl(var(--text-tertiary))];
+    @apply text-[9px] font-semibold uppercase tracking-[0.12em] text-[hsl(var(--text-tertiary))];
   }
 
-  .amber-glow {
-    box-shadow: 0 0 20px hsl(38 92% 50% / 0.15);
+  .page-title {
+    @apply text-sm font-semibold text-[hsl(var(--text-primary))] leading-tight;
   }
+
+  .data-value {
+    @apply text-lg font-semibold tabular-nums text-[hsl(var(--text-primary))];
+  }
+
+  .data-label {
+    @apply text-[10px] text-[hsl(var(--text-tertiary))];
+  }
+
+  /* ── Status ────────────────────────────────────────────── */
+
+  .status-operational  { @apply text-[hsl(var(--green))]; }
+  .status-fault        { @apply text-[hsl(var(--red))]; }
+  .status-warning      { @apply text-[hsl(var(--amber))]; }
+  .status-idle         { @apply text-[hsl(var(--text-tertiary))]; }
+
+  .severity-critical   { @apply border-l-2 border-[hsl(var(--red))]; }
+  .severity-high       { @apply border-l-2 border-[hsl(var(--amber))]; }
+  .severity-medium     { @apply border-l-2 border-yellow-500; }
+  .severity-low        { @apply border-l-2 border-[hsl(var(--text-dim))]; }
+
+  /* ── Badges ────────────────────────────────────────────── */
 
   .demo-badge {
-    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-[hsl(38_92%_50%/0.12)] text-[hsl(var(--amber))] border border-[hsl(38_92%_50%/0.3)];
+    @apply inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm text-[9px] font-semibold
+           uppercase tracking-wider bg-[hsl(36_88%_48%/0.08)] text-[hsl(var(--amber))]
+           border border-[hsl(36_88%_48%/0.2)];
   }
 
+  .live-badge {
+    @apply inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm text-[9px] font-semibold
+           uppercase tracking-wider bg-[hsl(150_45%_38%/0.08)] text-[hsl(var(--green))]
+           border border-[hsl(150_45%_38%/0.2)];
+  }
+
+  /* ── Navigation ────────────────────────────────────────── */
+
   .nav-item {
-    @apply flex items-center gap-2.5 px-3 py-2 rounded text-sm text-[hsl(var(--text-secondary))] hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--text-primary))] transition-colors cursor-pointer;
+    @apply flex items-center gap-2 px-2.5 py-1.5 rounded-sm text-xs
+           text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--text-primary))]
+           hover:bg-[hsl(var(--surface-3))] transition-colors cursor-pointer;
   }
 
   .nav-item-active {
-    @apply bg-[hsl(38_92%_50%/0.12)] text-[hsl(var(--amber))] border-r-2 border-[hsl(var(--amber))];
+    @apply bg-[hsl(36_88%_48%/0.1)] text-[hsl(var(--amber))]
+           border-r-2 border-[hsl(var(--amber))];
+  }
+
+  .nav-section {
+    @apply px-2.5 pt-3 pb-1 text-[9px] font-semibold uppercase tracking-[0.12em]
+           text-[hsl(var(--text-dim))];
+  }
+
+  /* ── Buttons ───────────────────────────────────────────── */
+
+  .btn-primary {
+    @apply flex items-center gap-1.5 px-3 py-1.5 rounded-sm
+           bg-[hsl(var(--amber))] text-[hsl(210_8%_6%)]
+           text-xs font-semibold hover:bg-[hsl(36_88%_42%)]
+           transition-colors disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply flex items-center gap-1.5 px-3 py-1.5 rounded-sm
+           border border-[hsl(var(--border))] text-xs font-medium
+           text-[hsl(var(--text-secondary))] hover:border-[hsl(var(--amber))]
+           hover:text-[hsl(var(--text-primary))] transition-colors;
+  }
+
+  .btn-ghost {
+    @apply flex items-center gap-1.5 px-2.5 py-1 rounded-sm text-xs
+           text-[hsl(var(--text-tertiary))] hover:text-[hsl(var(--text-primary))]
+           hover:bg-[hsl(var(--surface-3))] transition-colors;
+  }
+
+  /* ── Tabs / filter strips ──────────────────────────────── */
+
+  .filter-btn {
+    @apply px-2.5 py-1 rounded-sm text-[10px] font-medium border transition-colors
+           border-[hsl(var(--border))] text-[hsl(var(--text-tertiary))]
+           hover:border-[hsl(var(--amber))] hover:text-[hsl(var(--text-primary))];
+  }
+
+  .filter-btn-active {
+    @apply bg-[hsl(36_88%_48%/0.1)] border-[hsl(36_88%_48%/0.4)] text-[hsl(var(--amber))];
+  }
+
+  /* ── Form controls ─────────────────────────────────────── */
+
+  .mangan-select {
+    @apply bg-[hsl(var(--surface-2))] border border-[hsl(var(--border))] rounded-sm
+           px-2 py-1 text-xs text-[hsl(var(--text-secondary))]
+           focus:outline-none focus:border-[hsl(var(--amber))];
+  }
+
+  .mangan-input {
+    @apply bg-[hsl(var(--surface-2))] border border-[hsl(var(--border))] rounded-sm
+           px-2.5 py-1.5 text-xs text-[hsl(var(--text-primary))]
+           placeholder:text-[hsl(var(--text-dim))]
+           focus:outline-none focus:border-[hsl(var(--amber))];
+  }
+
+  /* ── Layer toggle (GIS) ────────────────────────────────── */
+
+  .layer-toggle {
+    @apply flex items-center gap-2 px-2 py-1.5 rounded-sm text-[10px]
+           border border-[hsl(var(--border))] text-[hsl(var(--text-secondary))]
+           hover:border-[hsl(var(--amber)/0.4)] hover:text-[hsl(var(--text-primary))]
+           cursor-pointer transition-colors;
+  }
+
+  .layer-toggle-active {
+    @apply bg-[hsl(36_88%_48%/0.08)] border-[hsl(36_88%_48%/0.35)] text-[hsl(var(--amber))];
+  }
+
+  /* ── Progress bars ─────────────────────────────────────── */
+
+  .progress-track {
+    @apply h-1.5 rounded-full bg-[hsl(var(--surface-3))] overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-300;
+  }
+
+  /* ── Data table ────────────────────────────────────────── */
+
+  .data-table {
+    @apply w-full text-xs;
+  }
+
+  .data-table th {
+    @apply text-left text-[9px] font-semibold uppercase tracking-widest
+           text-[hsl(var(--text-tertiary))] px-3 py-2
+           border-b border-[hsl(var(--border))];
+  }
+
+  .data-table td {
+    @apply px-3 py-2 text-[hsl(var(--text-secondary))]
+           border-b border-[hsl(var(--border)/0.6)];
+  }
+
+  .data-table tr:hover td {
+    @apply bg-[hsl(var(--surface-2))];
+  }
+
+  /* ── Tooltip ───────────────────────────────────────────── */
+
+  .map-tooltip {
+    @apply fixed z-50 pointer-events-none
+           bg-[hsl(210_8%_9%)] border border-[hsl(var(--border))]
+           rounded-sm px-2.5 py-1.5 text-[11px] text-[hsl(var(--text-secondary))]
+           shadow-xl whitespace-pre-line;
+  }
+
+  /* ── Dividers ──────────────────────────────────────────── */
+
+  .panel-divider {
+    @apply border-b border-[hsl(var(--border))];
+  }
+
+  /* ── Sparkline wrapper ─────────────────────────────────── */
+
+  .kpi-card {
+    @apply mangan-card p-3 flex flex-col gap-1;
   }
 }
 
-/* Custom recharts overrides */
+/* ── Recharts overrides ──────────────────────────────────── */
+
 .recharts-cartesian-grid-horizontal line,
 .recharts-cartesian-grid-vertical line {
-  stroke: hsl(220 12% 16%);
+  stroke: hsl(210 6% 14%);
 }
+
 .recharts-text {
-  fill: hsl(215 14% 52%);
-  font-size: 11px;
+  fill: hsl(210 6% 42%);
+  font-size: 10px;
 }
+
 .recharts-tooltip-wrapper {
   outline: none;
+}
+
+.recharts-tooltip-cursor {
+  stroke: hsl(210 6% 22%);
+}
+
+/* ── Slider styling ──────────────────────────────────────── */
+
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: hsl(36 88% 48%);
+  cursor: pointer;
+  border: 2px solid hsl(210 8% 9%);
+  box-shadow: 0 0 0 1px hsl(36 88% 48% / 0.4);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: hsl(36 88% 48%);
+  cursor: pointer;
+  border: 2px solid hsl(210 8% 9%);
 }
